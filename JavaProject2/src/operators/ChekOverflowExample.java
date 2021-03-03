@@ -6,7 +6,7 @@ public class ChekOverflowExample {
 			int result = safeAdd(2000000000, 2000000000);
 			System.out.println(result);
 		} catch (ArithmeticException e) {
-			System.out.println("오버플로우가 발생하여 정확하게 계산할 수 업음");
+			System.out.println("오버플로우가 발생하여 정확하게 계산할 수 없음");
 		}
 	}
 
