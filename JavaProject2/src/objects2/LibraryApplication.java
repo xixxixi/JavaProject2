@@ -18,17 +18,19 @@ public class LibraryApplication {
 			int menu = scn.nextInt();
 
 			if (menu == 1) {
-				for (int i = 0; i < 10; i++) {
-					
-					System.out.print("책 이름> ");
-					String name = scn.next();
-					System.out.print("저자 > ");
-					String writer = scn.next();
-					System.out.print("출판사 > ");
-					String pub = scn.next();
-					System.out.print("가격 > ");
-					int price = scn.nextInt();
+				System.out.print("책 이름> ");
+				String name = scn.next();
+				System.out.print("저자> ");
+				String writer = scn.next();
+				System.out.print("출판사> ");
+				String pub = scn.next();
+				System.out.print("가격> ");
+				int price = scn.nextInt();
+				Book list = new Book(name, writer, pub, price);
+
+				for (int i = 0; i < bookList.length; i++) {
 					if (bookList[i] == null) {
+						bookList[i] = list;
 						break;
 					}
 				}
@@ -37,18 +39,26 @@ public class LibraryApplication {
 				String memName = scn.next();
 				System.out.print("회원 아이디> ");
 				String memId = scn.next();
+				Member mem = new Member(memName, memId);
 
 			} else if (menu == 3) {
-				user.rent(bookList[1]);
-				System.out.println("도서를 대출하였습니다.");
+				for (int i = 0; i < bookList.length; i++) {
+					user.rent(bookList[i]);
+				}
+				System.out.println(user.getBookInfo() + " 도서를 대출하였습니다.");
 
 			} else if (menu == 4) {
-				user.overdue(bookList[1]);
+				for (int i = 0; i < bookList.length; i++) {
+					user.overdue(bookList[i]);
+				}
 				System.out.println("도서를 반납하였습니다.");
 
 			} else if (menu == 5) {
 				for (int i = 0; i < bookList.length; i++) {
-					System.out.println(bookList[i]);
+					if (bookList[i] == null)
+						break;
+					System.out.println(bookList[i].getName() + " | " + bookList[i].getWriter() + " | "
+							+ bookList[i].getPub() + " | " + bookList[i].getPrice());
 				}
 
 			} else if (menu == 9) {
