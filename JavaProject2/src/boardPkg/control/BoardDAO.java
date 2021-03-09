@@ -52,7 +52,7 @@ public class BoardDAO {
 				Board brd = new Board();
 				brd.setBoardNo(rs.getInt("board_no")); // set 메소드 이용
 				brd.setTitle(rs.getString("title"));
-				brd.setContnet(rs.getString("content"));
+				brd.setContent(rs.getString("content"));
 				brd.setWriter(rs.getString("writer"));
 				brd.setCreationDate(rs.getString("creation_date"));
 
@@ -94,7 +94,7 @@ public class BoardDAO {
 	public void insertBoard(Board board) {
 		conn = DBCon.getConnection();
 		sql = "insert into board values(" + board.getBoardNo() + ", '" + board.getTitle() + "'" + ", '"
-				+ board.getContnet() + "'" + ", '" + board.getWriter() + "'" + ", sysdate" + ")"; // 숫자는 따옴표x, 문자는 따옴표o
+				+ board.getContent() + "'" + ", '" + board.getWriter() + "'" + ", sysdate" + ")"; // 숫자는 따옴표x, 문자는 따옴표o
 		try {
 			conn.createStatement(); // 예외 처리
 			int r = stmt.executeUpdate(sql); // executeUpdate는 n건을 리턴
@@ -111,7 +111,7 @@ public class BoardDAO {
 	// 수정
 	public void updateBoard(Board board) {
 		conn = DBCon.getConnection();
-		sql = "update board set content = '" + board.getContnet() + "' where board_no = " + board.getBoardNo();
+		sql = "update board set content = '" + board.getContent() + "' where board_no = " + board.getBoardNo();
 		try {
 			conn.createStatement();
 			int r = stmt.executeUpdate(sql);
