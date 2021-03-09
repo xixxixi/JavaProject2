@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 public class CalendarExe {
 	public static void main(String[] args) {
-		showCal(2021, 3); // 5월 달력을 보여주는 메소드
+		showCal(2021, 4); // 5월 달력을 보여주는 메소드
 		// 달력 만들기
 //		System.out.println(cal.get(Calendar.YEAR));
 //		System.out.println(cal.get(Calendar.MONTH));
@@ -42,9 +42,7 @@ public class CalendarExe {
 
 	public static void showCal(int year, int month) {
 		Calendar cal = Calendar.getInstance();
-		
-		if (month<1 || 12>month) {
-		}
+		cal.set(year, (month-1), 1);
 		int lastDate = cal.getActualMaximum(Calendar.DATE);
 		int firstDay = cal.get(Calendar.DAY_OF_WEEK);
 
