@@ -3,8 +3,11 @@ package api;
 public class Car {
 	public String model;
 
-	public Car(String moedl) {
-		this.model = moedl;
+	public Car(String model) {
+		this.model = model;
+	}
+
+	public Car() {
 	}
 
 }
