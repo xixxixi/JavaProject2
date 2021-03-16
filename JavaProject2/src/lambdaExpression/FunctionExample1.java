@@ -3,7 +3,12 @@ package lambdaExpression;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
+import java.util.function.IntPredicate;
 import java.util.function.ToIntFunction;
+import java.util.stream.Stream;
+
+import hr.EmpDAO;
+import hr.Employee;
 
 public class FunctionExample1 {
 	private static List<Student> list = Arrays.asList(new Student("홍길동", 90, 96), new Student("신용권", 95, 93));
@@ -49,5 +54,21 @@ public class FunctionExample1 {
 				return t.getMathScore();
 			}
 		});
+
+		EmpDAO dao = new EmpDAO();
+		List<Employee> list = dao.getEmpList();
+		Stream<Employee> stream = list.stream();
+		stream.mapToInt((value) -> value.getSalary())//
+				.filter((value) -> value > 5000)//
+				.forEach((t) -> // forEach : 스트림의 각각의 요소에 대해 반복적으로 작업을 함
+				System.out.println("Salary: " + t));
+	}	// 기능을 받아와서 작업을 하는 것
+
+	public static int sum(int a, int b) {
+		return a + b;	// 매개값을 받는 메소드
+	}
+	
+	public static int getMaxValue(int[] intAry) {
+		return 0;		// 어떤 값을 활용해서 처리함
 	}
 }

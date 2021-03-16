@@ -8,5 +8,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Dev/ojdbc6_g.jar"/>
+	<classpathentry kind="lib" path="C:/Users/admin/Downloads/javax.mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/admin/Downloads/jaf-1_1_1/jaf-1.1.1/activation.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
