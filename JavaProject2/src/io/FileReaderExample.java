@@ -13,7 +13,7 @@ public class FileReaderExample {
 		char[] readChars = new char[100];
 		int data = 0;
 		while ((data = fr.read(readChars)) != -1) {
-//			String data = new String(cbuf, 0, readCharNo);
+//			String data = new String(cbuf, 0, readCharNo); // 0번째 위치부터 읽어온 데이터까지만 불러오기. 버퍼에 남아 있는 것들은 대상에서 제외
 //			System.out.println((char) data);
 //			System.out.print(new String(readChars));
 			String readLines = new String(readChars);
