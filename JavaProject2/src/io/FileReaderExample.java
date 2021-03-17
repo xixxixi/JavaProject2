@@ -20,9 +20,13 @@ public class FileReaderExample {
 			fw.write(readLines);
 //			fw.write(data);
 		}
-//		fw.flush();
+		
+		fw = new FileWriter("c:/Temp/Dir/emp.txt");
+		fw.write("Hello World");
+		fw.flush();
 		fw.close();
 		fr.close();
+		
 		System.out.println("end...");
 	}
 
