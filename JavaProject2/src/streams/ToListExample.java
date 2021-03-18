@@ -32,6 +32,7 @@ public class ToListExample {
 					}
 				}) // Stream<Employee>
 				.collect(Collectors.toList());
+				
 
 		empList.stream().forEach(s -> System.out.println(s));
 
