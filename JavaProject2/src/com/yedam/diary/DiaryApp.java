@@ -1,5 +1,7 @@
 package com.yedam.diary;
 
+import java.util.List;
+
 public class DiaryApp {
 	DAO dao;
 
@@ -64,6 +66,12 @@ public class DiaryApp {
 		case 전체조회:
 			selectAll();
 			break;
+		case 날짜검색:
+			selectDate();
+			break;
+		case 내용검색:
+			selectContent();
+			break;
 		}
 	}
 
@@ -94,10 +102,11 @@ public class DiaryApp {
 		String wdate = StdInputUtil.readDate();
 		System.out.println("내용: ");
 		String contents = StdInputUtil.readMultiLine();
-		
+
 		DiaryVO vo = new DiaryVO();
 		vo.setWdate(wdate);
 		vo.setContents(contents);
+		dao.update(vo);
 		System.out.println("수정완료.");
 	}
 
@@ -114,8 +123,36 @@ public class DiaryApp {
 	public void selectAll() {
 		System.out.println("전체조회선택>>");
 		for (DiaryVO vo : dao.selectAll()) {
-			System.out.println(vo.getWdate());
-			System.out.println(vo.getContents());
+			print(vo);
 		}
+	}
+
+	// 날짜 검색
+	public void selectDate() {
+		System.out.println("날짜검색선택>>");
+		System.out.println("날짜:[yyMMdd]");
+		String wdate = StdInputUtil.readDate();
+
+		DiaryVO vo = dao.selectDate(wdate);
+		print(vo);
+	}
+
+	// 내용 검색
+	public void selectContent() {
+		System.out.println("내용검색선택>>");
+		System.out.print("내용: ");
+		String contents = StdInputUtil.readMultiLine();
+		System.out.println(new String(contents.getBytes(), 0, (contents.length() - 1)));
+		List<DiaryVO> list = dao.selectContent(contents);
+		for (DiaryVO vo : list) {
+			print(vo);
+		}
+	}
+
+	//
+	public void print(DiaryVO vo) {
+		System.out.println("날짜는 : " + vo.getWdate());
+		System.out.println("내용은 : " + vo.getContents());
+		System.out.println("-------------------------------");
 	}
 } // end of class

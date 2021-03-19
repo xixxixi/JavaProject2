@@ -2,12 +2,17 @@ package com.yedam.diary;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,18 +66,17 @@ public class DiaryListDAO implements DAO {
 	@Override
 	public int insert(DiaryVO vo) {
 		int cnt = list.size();
-		int ii = 0;
-		for (int i = 0; i < cnt; i++) {
+		for (; cnt > 0; cnt--) {
 			// 중복 날짜 입력불가
-			if (list.get(i).getWdate().equals(vo.getWdate())) {
+			if (list.get(cnt - 1).getWdate().equals(vo.getWdate())) {
 				return 0;
 			}
-			if (list.get(i).getWdate().compareTo(vo.getWdate()) > 0) {
-				ii = i;
+			// 정렬 입력
+			if (list.get(cnt - 1).getWdate().compareTo(vo.getWdate()) < 0) {
 				break;
 			}
 		}
-		list.add(ii, vo);
+		list.add(cnt, vo);
 		writeFile();
 
 		return 1;
@@ -80,13 +84,14 @@ public class DiaryListDAO implements DAO {
 
 	@Override
 	public void update(DiaryVO vo) {
-		
+
 		int cnt = list.size();
 		for (int i = 0; i < cnt; i++) {
 			if (list.get(i).getWdate().equals(vo.getWdate())) {
 				list.set(i, vo);
+//				list.get(i).setContents(vo.getContents());
 				writeFile();
-			} 
+			}
 		}
 	}
 
@@ -105,12 +110,26 @@ public class DiaryListDAO implements DAO {
 
 	@Override
 	public DiaryVO selectDate(String date) {
-		return null;
+		int cnt = list.size();
+		DiaryVO vo = null;
+		for (int i = 0; i < cnt; i++) {
+			if (list.get(i).getWdate().equals(date)) {
+				vo = list.get(i);
+			}
+		} 
+		return vo;
 	}
 
 	@Override
 	public List<DiaryVO> selectContent(String content) {
-		return null;
+		List<DiaryVO> result = new ArrayList<DiaryVO>();
+		int cnt = list.size();
+		for(int i = 0; i<cnt; i++ ) {
+			if(list.get(i).getContents().equals(content)) {
+				result.add(list.get(i));
+			}
+		}
+		return result;
 	}
 
 	@Override
