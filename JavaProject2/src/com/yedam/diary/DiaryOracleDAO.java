@@ -8,9 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import hr.DBUtil;
-import hr.DiaryVO;
-
 // 날짜, 내용
 // 테이블
 // 접속 계정 : diary / diary
@@ -99,7 +96,7 @@ public class DiaryOracleDAO implements DAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBUtil.close(null, stmt, conn);
+//			DBUtil.close(null, stmt, conn);
 		}
 		return null;
 	}
@@ -125,7 +122,7 @@ public class DiaryOracleDAO implements DAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DButil.close(null, stmt conn);
+//			DButil.close(null, stmt conn);
 		}
 		return list;
 	}
